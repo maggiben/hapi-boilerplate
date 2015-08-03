@@ -1,0 +1,38 @@
+{
+    "onepw": {
+        "namespace": "v1/"
+    },
+    "manifest": {
+        "server": {
+            "load": {
+                "sampleInterval": 1000
+            },
+            "app": {
+                "url": "http://localhost:3000"
+            }
+        },
+        "connections": [{
+            "port": 3000,
+            "routes": {
+                "cors": {
+                    "additionalExposedHeaders": [ "Hawk-Session-Token" ],
+                    "additionalHeaders": [ "Client-Type" ]
+                },
+                "timeout": {
+                    "server": 10000
+                }
+            },
+            "load": {
+                "maxHeapUsedBytes": 1073741824,
+                "maxRssBytes": 2147483648,
+                "maxEventLoopDelay": 5000
+            },
+            "labels": [
+                "auth"
+            ]
+        }],
+        "plugins": {
+            "./echo": null
+        }
+    }
+}

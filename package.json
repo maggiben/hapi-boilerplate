@@ -1,0 +1,33 @@
+{
+  "name": "glue-boilerplate",
+  "version": "0.0.1",
+  "description": "Hapi Glue Boilerplate",
+  "main": "server.js",
+  "dependencies": {
+    "boom": "^2.8.0",
+    "config": "^1.15.0",
+    "glue": "^2.1.1",
+    "good": "^6.3.0",
+    "good-console": "^5.0.2",
+    "hapi": "^8.8.1",
+    "hapi-api-versioning": "0.0.1",
+    "joi": "^6.6.1",
+    "lout": "^6.2.3",
+    "poop": "^1.2.5",
+    "tv": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "make test-cov",
+    "start": "node server.js",
+    "forever": "forever -w --uid 'dial' --minUptime 5000 --spinSleepTime 1000 -m 5 server.js"
+  },
+  "keywords": [
+    "hapi",
+    "glue",
+    "joi",
+    "boom"
+  ],
+  "author": "benjamin maggi",
+  "license": "MIT"
+}
