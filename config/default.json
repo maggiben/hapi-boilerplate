@@ -32,7 +32,26 @@
             ]
         }],
         "plugins": {
-            "./echo": null
+            "./mongo": {
+                "server": {
+                    "socketOptions": { "keepAlive": 1, "connectTimeoutMS": 30000 },
+                    "poolSize": 10
+                },
+                "replset": {
+                    "socketOptions": { "keepAlive": 1, "connectTimeoutMS": 30000 },
+                    "poolSize": 10
+                }
+            },
+            "./home": null,
+            "./store": null,
+            "./info": null
         }
+    },
+    "mongodb": {
+        "hostname": "dogen.mongohq.com",
+        "port": 10054,
+        "username": "backend",
+        "password": "password",
+        "db": "vineyard"
     }
 }

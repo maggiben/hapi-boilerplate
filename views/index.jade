@@ -1,0 +1,166 @@
+doctype html
+html(ng-app="vineyard", data-framework="angularjs", lang="en")
+  head
+    title Vineyard
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="robots", content="noindex, nofollow")
+    meta(name="viewport" content="width=device-width")
+    meta(name='description', content='Realtime Chat Application')
+    meta(name='author', content='Benjamin')
+
+    link(rel='icon', type='image/png', href='images/logo.png', sizes="64x64")
+    // Bootstrap
+    link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+    // FontAwesome
+    link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+    // Font
+    link(rel="stylesheet/css", type="text/css", href="//fonts.googleapis.com/css?family=Open+Sans")
+    //link(rel="stylesheet", type="text/css", href="css/masonry.css")
+
+    style.
+        body {
+
+            background: #191919 url(http://pattern8.com/images/pattern-thumbs/pattern8-pattern-76a.png) repeat left top;
+        }
+        .wrapper {
+            width: 820px;
+            margin: 0 auto;
+        }
+        .masonry {
+            width: 100%;
+        }
+        .item {
+            background: #fff;
+            margin-bottom: 10px;
+            float: left;
+            margin: 0 0 1.5em;
+            min-width: 280px;
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+            border-radius: 3px;
+        }
+        .item .head {
+            position: relative;
+            width: 100%;
+        }
+        .item .head .title  {
+            display: block;
+            position: absolute;
+            width: 100%;
+            text-align: left;
+            padding-left: 10px;
+            bottom: 0px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFF;
+            font-size: 1.5em;
+            text-shadow: 1px 1px #000;
+        }
+        .item .head img {
+            display: block;
+            margin: 0 auto;
+            margin: 0px;
+            max-width: 100%;
+        }
+        .nav-bar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        .nav-bar .app-title {
+            margin: 0px;
+            padding: 10px;
+        }
+        .comments .comment {
+            margin: 10px 0px;
+            border: 1px solid rgba(255, 255, 255, 0.31);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .comment .avatar {
+            width: 32px;
+            height: 32px;
+            background-color: #fff;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 2px;
+        }
+        .comment .text {
+            color: #ccc;
+            display: inline-block;
+            text-align: left;
+        }
+        .input {
+            display: flex;
+        }
+        .input textarea {
+            width: 100%;
+            border: 1px solid #D8D8D8;
+            color: #111;
+            padding: 4px;
+            outline: 0;
+            resize: none;
+        }
+        button.submit {
+            border: 1px solid #D8D8D8;
+            border-left: 0;
+            background-color: #f1f1f1;
+        }
+        button.add-more {
+            border: none;
+            background-color: transparent;
+            font-size: 64px;
+            text-align: center;
+            width: 100%;
+            min-height: 180px;
+            color: gray;
+        }
+        @media only screen and (min-width: 700px) {
+            .item {
+                min-width: 120px;
+            }
+        }
+
+        @media only screen and (min-width: 900px) {
+            .item {
+                min-width: 180px;
+                margin: 10px;
+            }
+        }
+
+        @media only screen and (min-width: 1100px) {
+            .item {
+                min-width: 240px;
+            }
+        }
+
+        @media only screen and (min-width: 1280px) {
+            .item {
+               width: 30%;
+               margin: 1.65%;
+            }
+        }
+
+
+  body(ng-controller="VineController as vine", ng-cloak, vine-scroller="vine.scroll()")
+    nav.nav-bar
+        h1.app-title AngularJs + Babel + JSPM + GULP
+    div.wrapper
+        div.masonry(masonry="{ 'transitionDuration' : '0.4s' , 'gutter' : '20'}")
+            div.item(masonry-tile)
+                button.add-more(ng-click="vine.addMe()") +
+            div.item(masonry-tile, ng-repeat="item in vine.items")
+                div.head
+                    a.title(href="#") {{item.name}}
+                    img.image(ng-src="{{item.image}}")
+                div.comments
+                    div.comment(ng-repeat="comment in item.comments")
+                        img.avatar(src="http://lorempixel.com/64/64/cats")
+                        div.text {{comment.message}}
+                div.input
+                    textarea(ng-model="item.message")
+                    button.submit(ng-click="vine.comment(item)")
+                        i.fa.fa-fw.fa-comment-o
+    script(src="jspm_packages/system.js")
+    script(src="config.js")
+    script.
+        System.import("./app/app");
